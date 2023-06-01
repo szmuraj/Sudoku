@@ -18,7 +18,7 @@ public class SudokuApplication {
     public static String startBracket() {
 
         int[] c0 = {0, 0, 2, 0, 0, 0, 0, 6, 0};
-        int[] c1 = {0, 5, 0, 6, 0, 0, 0, 0, 2};
+        int[] c1 = {0, 5, 0, 6, 0, 0, 0, 0, 0};
         int[] c2 = {0, 3, 0, 2, 4, 5, 0, 0, 7};
         int[] c3 = {1, 0, 3, 0, 0, 0, 6, 0, 5};
         int[] c4 = {0, 4, 0, 0, 8, 0, 2, 0, 0};
@@ -162,8 +162,150 @@ public class SudokuApplication {
                 }
             }
 
+            //ograniczenie możliwości wg klatek
+            for (int c = 0; c < 9; c++) {
+                for (int l = 0; l < 9; l++) {
+                    if(c < 3 && l < 3) {
+                        if (b[c][l] != 0) {
+                            num00[b[c][l] - 1] = 0;
+                            num10[b[c][l] - 1] = 0;
+                            num20[b[c][l] - 1] = 0;
+
+                            num01[b[c][l] - 1] = 0;
+                            num11[b[c][l] - 1] = 0;
+                            num21[b[c][l] - 1] = 0;
+
+                            num02[b[c][l] - 1] = 0;
+                            num12[b[c][l] - 1] = 0;
+                            num22[b[c][l] - 1] = 0;
+                        }
+                    }
+                    if(c > 2 && c < 6 && l < 3) {
+                        if (b[c][l] != 0) {
+                            num30[b[c][l] - 1] = 0;
+                            num40[b[c][l] - 1] = 0;
+                            num50[b[c][l] - 1] = 0;
+
+                            num31[b[c][l] - 1] = 0;
+                            num41[b[c][l] - 1] = 0;
+                            num51[b[c][l] - 1] = 0;
+
+                            num32[b[c][l] - 1] = 0;
+                            num42[b[c][l] - 1] = 0;
+                            num52[b[c][l] - 1] = 0;
+                        }
+                    }
+                    if(c > 5 && l < 3) {
+                        if (b[c][l] != 0) {
+                            num60[b[c][l] - 1] = 0;
+                            num70[b[c][l] - 1] = 0;
+                            num80[b[c][l] - 1] = 0;
+
+                            num61[b[c][l] - 1] = 0;
+                            num71[b[c][l] - 1] = 0;
+                            num81[b[c][l] - 1] = 0;
+
+                            num62[b[c][l] - 1] = 0;
+                            num72[b[c][l] - 1] = 0;
+                            num82[b[c][l] - 1] = 0;
+                        }
+                    }
+                    if(c < 3 && l > 2 && l < 6) {
+                        if (b[c][l] != 0) {
+                            num03[b[c][l] - 1] = 0;
+                            num13[b[c][l] - 1] = 0;
+                            num23[b[c][l] - 1] = 0;
+
+                            num04[b[c][l] - 1] = 0;
+                            num14[b[c][l] - 1] = 0;
+                            num24[b[c][l] - 1] = 0;
+
+                            num05[b[c][l] - 1] = 0;
+                            num15[b[c][l] - 1] = 0;
+                            num25[b[c][l] - 1] = 0;
+                        }
+                    }
+                    if(c > 2 && c < 6 && l > 2 && l < 6) {
+                        if (b[c][l] != 0) {
+                            num33[b[c][l] - 1] = 0;
+                            num43[b[c][l] - 1] = 0;
+                            num53[b[c][l] - 1] = 0;
+
+                            num34[b[c][l] - 1] = 0;
+                            num44[b[c][l] - 1] = 0;
+                            num54[b[c][l] - 1] = 0;
+
+                            num35[b[c][l] - 1] = 0;
+                            num45[b[c][l] - 1] = 0;
+                            num55[b[c][l] - 1] = 0;
+                        }
+                    }
+                    if(c > 5 && l > 2 && l < 6) {
+                        if (b[c][l] != 0) {
+                            num63[b[c][l] - 1] = 0;
+                            num73[b[c][l] - 1] = 0;
+                            num83[b[c][l] - 1] = 0;
+
+                            num64[b[c][l] - 1] = 0;
+                            num74[b[c][l] - 1] = 0;
+                            num84[b[c][l] - 1] = 0;
+
+                            num65[b[c][l] - 1] = 0;
+                            num75[b[c][l] - 1] = 0;
+                            num85[b[c][l] - 1] = 0;
+                        }
+                    }
+                    if(c < 3 && l > 5) {
+                        if (b[c][l] != 0) {
+                            System.out.println(Arrays.toString(num26));
+                            num06[b[c][l] - 1] = 0;
+                            num16[b[c][l] - 1] = 0;
+                            num26[b[c][l] - 1] = 0;
+
+                            num07[b[c][l] - 1] = 0;
+                            num17[b[c][l] - 1] = 0;
+                            num27[b[c][l] - 1] = 0;
+
+                            num08[b[c][l] - 1] = 0;
+                            num18[b[c][l] - 1] = 0;
+                            num28[b[c][l] - 1] = 0;
+                        }
+                    }
+                    if(c > 2 && c < 6 && l > 5) {
+                        if (b[c][l] != 0) {
+                            num36[b[c][l] - 1] = 0;
+                            num46[b[c][l] - 1] = 0;
+                            num56[b[c][l] - 1] = 0;
+
+                            num37[b[c][l] - 1] = 0;
+                            num47[b[c][l] - 1] = 0;
+                            num57[b[c][l] - 1] = 0;
+
+                            num38[b[c][l] - 1] = 0;
+                            num48[b[c][l] - 1] = 0;
+                            num58[b[c][l] - 1] = 0;
+                        }
+                    }
+                    if(c > 5 && l > 5) {
+                        if (b[c][l] != 0) {
+                            num66[b[c][l] - 1] = 0;
+                            num76[b[c][l] - 1] = 0;
+                            num86[b[c][l] - 1] = 0;
+
+                            num67[b[c][l] - 1] = 0;
+                            num77[b[c][l] - 1] = 0;
+                            num87[b[c][l] - 1] = 0;
+
+                            num68[b[c][l] - 1] = 0;
+                            num78[b[c][l] - 1] = 0;
+                            num88[b[c][l] - 1] = 0;
+                        }
+                    }
+                }
+            }
+
             //nadawanie wartości obecnych
-            for(int c=0; c<9; c++) {
+            for (int c = 0; c < 9; c++) {
                 for (int l = 0; l < 9; l++) {
                     if (b[c][l] != 0) {
                         for (int i = 0; i < 9; i++) {
@@ -175,20 +317,15 @@ public class SudokuApplication {
             }
 
             // gdy jest tylko 1 możliwość w wierszu bądź kolumnie wstawia ją
-/*            for(int c=0; c<9; c++) {
-                for (int l = 0; l < 9; l++) {
-                    if (1 == Arrays.stream(numX[c][l]).filter(e -> e != 0).count()) {
-                        b[c][l] = Arrays.stream(numX[c][l]).sum();
-                    }
-                }
-            }*/
+
 
             // poprawka dla sumy
             for (int i = 0; i < 9; i++) {
                 sum += Arrays.stream(b[i]).sum();
 
             }
-            if (sum != 405) System.out.println(sum); sum = 0;
+            if (sum != 405) System.out.println(sum);
+            sum = 0;
 
             String bracket = " ___________________________________________________________\n " +
                     "|     |     |     | |     |     |     | |     |     |     |\n " +
