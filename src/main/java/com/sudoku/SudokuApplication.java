@@ -17,15 +17,15 @@ public class SudokuApplication {
 
     public static String startBracket() {
 
-        int[] c0 = {0, 0, 2, 0, 0, 0, 0, 6, 0};
+        int[] c0 = {0, 7, 2, 9, 3, 1, 5, 6, 8};
         int[] c1 = {0, 5, 0, 6, 0, 0, 0, 0, 0};
         int[] c2 = {0, 3, 0, 2, 4, 5, 0, 0, 7};
         int[] c3 = {1, 0, 3, 0, 0, 0, 6, 0, 5};
-        int[] c4 = {0, 4, 0, 0, 8, 0, 2, 0, 0};
-        int[] c5 = {0, 0, 0, 0, 0, 6, 0, 3, 0};
+        int[] c4 = {0, 4, 0, 0, 8, 0, 2, 0, 9};
+        int[] c5 = {0, 0, 0, 0, 0, 6, 0, 3, 4};
         int[] c6 = {0, 9, 4, 0, 0, 2, 0, 5, 1};
-        int[] c7 = {0, 0, 0, 8, 0, 9, 4, 0, 0};
-        int[] c8 = {8, 0, 0, 3, 0, 4, 0, 0, 6};
+        int[] c7 = {0, 0, 0, 8, 0, 9, 4, 0, 3};
+        int[] c8 = {8, 1, 7, 3, 5, 4, 9, 0, 6};
 
         int[][] b = {c0, c1, c2, c3, c4, c5, c6, c7, c8};
 
@@ -134,175 +134,6 @@ public class SudokuApplication {
 
         int sum = 0;
         while (sum != 405) {
-            // ogranicza możliwości wg linijek
-            for (int x = 0; x < 9; x++) {
-                for (int y = 0; y < 9; y++) {
-                    for (int c = 0; c < 9; c++) {
-                        for (int l = 0; l < 9; l++) {
-                            if (b[c][l] != 0) {
-                                int s = numX[x][y][b[c][l] - 1];
-                                if (s != 0) {
-                                    numX[x][c][s - 1] = 0;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // ogranicza możliwości wg kolumn
-            for (int x = 0; x < 9; x++) {
-                for (int l = 0; l < 9; l++) {
-                    for (int c = 0; c < 9; c++) {
-                        if (b[c][l] != 0) {
-                            int t = b[c][l];
-                            numX[x][l][t - 1] = 0;
-                        }
-                    }
-                }
-            }
-
-            //ograniczenie możliwości wg klatek
-            for (int c = 0; c < 9; c++) {
-                for (int l = 0; l < 9; l++) {
-                    if(c < 3 && l < 3) {
-                        if (b[c][l] != 0) {
-                            num00[b[c][l] - 1] = 0;
-                            num10[b[c][l] - 1] = 0;
-                            num20[b[c][l] - 1] = 0;
-
-                            num01[b[c][l] - 1] = 0;
-                            num11[b[c][l] - 1] = 0;
-                            num21[b[c][l] - 1] = 0;
-
-                            num02[b[c][l] - 1] = 0;
-                            num12[b[c][l] - 1] = 0;
-                            num22[b[c][l] - 1] = 0;
-                        }
-                    }
-                    if(c > 2 && c < 6 && l < 3) {
-                        if (b[c][l] != 0) {
-                            num30[b[c][l] - 1] = 0;
-                            num40[b[c][l] - 1] = 0;
-                            num50[b[c][l] - 1] = 0;
-
-                            num31[b[c][l] - 1] = 0;
-                            num41[b[c][l] - 1] = 0;
-                            num51[b[c][l] - 1] = 0;
-
-                            num32[b[c][l] - 1] = 0;
-                            num42[b[c][l] - 1] = 0;
-                            num52[b[c][l] - 1] = 0;
-                        }
-                    }
-                    if(c > 5 && l < 3) {
-                        if (b[c][l] != 0) {
-                            num60[b[c][l] - 1] = 0;
-                            num70[b[c][l] - 1] = 0;
-                            num80[b[c][l] - 1] = 0;
-
-                            num61[b[c][l] - 1] = 0;
-                            num71[b[c][l] - 1] = 0;
-                            num81[b[c][l] - 1] = 0;
-
-                            num62[b[c][l] - 1] = 0;
-                            num72[b[c][l] - 1] = 0;
-                            num82[b[c][l] - 1] = 0;
-                        }
-                    }
-                    if(c < 3 && l > 2 && l < 6) {
-                        if (b[c][l] != 0) {
-                            num03[b[c][l] - 1] = 0;
-                            num13[b[c][l] - 1] = 0;
-                            num23[b[c][l] - 1] = 0;
-
-                            num04[b[c][l] - 1] = 0;
-                            num14[b[c][l] - 1] = 0;
-                            num24[b[c][l] - 1] = 0;
-
-                            num05[b[c][l] - 1] = 0;
-                            num15[b[c][l] - 1] = 0;
-                            num25[b[c][l] - 1] = 0;
-                        }
-                    }
-                    if(c > 2 && c < 6 && l > 2 && l < 6) {
-                        if (b[c][l] != 0) {
-                            num33[b[c][l] - 1] = 0;
-                            num43[b[c][l] - 1] = 0;
-                            num53[b[c][l] - 1] = 0;
-
-                            num34[b[c][l] - 1] = 0;
-                            num44[b[c][l] - 1] = 0;
-                            num54[b[c][l] - 1] = 0;
-
-                            num35[b[c][l] - 1] = 0;
-                            num45[b[c][l] - 1] = 0;
-                            num55[b[c][l] - 1] = 0;
-                        }
-                    }
-                    if(c > 5 && l > 2 && l < 6) {
-                        if (b[c][l] != 0) {
-                            num63[b[c][l] - 1] = 0;
-                            num73[b[c][l] - 1] = 0;
-                            num83[b[c][l] - 1] = 0;
-
-                            num64[b[c][l] - 1] = 0;
-                            num74[b[c][l] - 1] = 0;
-                            num84[b[c][l] - 1] = 0;
-
-                            num65[b[c][l] - 1] = 0;
-                            num75[b[c][l] - 1] = 0;
-                            num85[b[c][l] - 1] = 0;
-                        }
-                    }
-                    if(c < 3 && l > 5) {
-                        if (b[c][l] != 0) {
-                            System.out.println(Arrays.toString(num26));
-                            num06[b[c][l] - 1] = 0;
-                            num16[b[c][l] - 1] = 0;
-                            num26[b[c][l] - 1] = 0;
-
-                            num07[b[c][l] - 1] = 0;
-                            num17[b[c][l] - 1] = 0;
-                            num27[b[c][l] - 1] = 0;
-
-                            num08[b[c][l] - 1] = 0;
-                            num18[b[c][l] - 1] = 0;
-                            num28[b[c][l] - 1] = 0;
-                        }
-                    }
-                    if(c > 2 && c < 6 && l > 5) {
-                        if (b[c][l] != 0) {
-                            num36[b[c][l] - 1] = 0;
-                            num46[b[c][l] - 1] = 0;
-                            num56[b[c][l] - 1] = 0;
-
-                            num37[b[c][l] - 1] = 0;
-                            num47[b[c][l] - 1] = 0;
-                            num57[b[c][l] - 1] = 0;
-
-                            num38[b[c][l] - 1] = 0;
-                            num48[b[c][l] - 1] = 0;
-                            num58[b[c][l] - 1] = 0;
-                        }
-                    }
-                    if(c > 5 && l > 5) {
-                        if (b[c][l] != 0) {
-                            num66[b[c][l] - 1] = 0;
-                            num76[b[c][l] - 1] = 0;
-                            num86[b[c][l] - 1] = 0;
-
-                            num67[b[c][l] - 1] = 0;
-                            num77[b[c][l] - 1] = 0;
-                            num87[b[c][l] - 1] = 0;
-
-                            num68[b[c][l] - 1] = 0;
-                            num78[b[c][l] - 1] = 0;
-                            num88[b[c][l] - 1] = 0;
-                        }
-                    }
-                }
-            }
 
             //nadawanie wartości obecnych
             for (int c = 0; c < 9; c++) {
@@ -316,13 +147,182 @@ public class SudokuApplication {
                 }
             }
 
-            // gdy jest tylko 1 możliwość w wierszu bądź kolumnie wstawia ją
+            // ogranicza możliwości wg linijek
+            for (int c = 0; c < 9; c++) {
+                for (int l = 0; l < 9; l++) {
+                    int s = b[c][l];
+                    if (b[c][l] != 0) {
+                        numX[0][l][b[c][l] - 1] = 0;
+                        numX[1][l][b[c][l] - 1] = 0;
+                        numX[2][l][b[c][l] - 1] = 0;
+                        numX[3][l][b[c][l] - 1] = 0;
+                        numX[4][l][b[c][l] - 1] = 0;
+                        numX[5][l][b[c][l] - 1] = 0;
+                        numX[6][l][b[c][l] - 1] = 0;
+                        numX[7][l][b[c][l] - 1] = 0;
+                        numX[8][l][b[c][l] - 1] = 0;
+                        numX[c][l][b[c][l] - 1] = s;
+                    }
+                }
+            }
 
+            // ogranicza możliwości wg kolumn
+            for (int c = 0; c < 9; c++) {
+                for (int l = 0; l < 9; l++) {
+                    int s = b[c][l];
+                    if (b[c][l] != 0) {
+                        numX[c][0][b[c][l] - 1] = 0;
+                        numX[c][1][b[c][l] - 1] = 0;
+                        numX[c][2][b[c][l] - 1] = 0;
+                        numX[c][3][b[c][l] - 1] = 0;
+                        numX[c][4][b[c][l] - 1] = 0;
+                        numX[c][5][b[c][l] - 1] = 0;
+                        numX[c][6][b[c][l] - 1] = 0;
+                        numX[c][7][b[c][l] - 1] = 0;
+                        numX[c][8][b[c][l] - 1] = 0;
+                        numX[c][l][b[c][l] - 1] = s;
+                    }
+                }
+            }
+
+            //ograniczenie możliwości wg klatek
+            for (int c = 0; c < 9; c++) {
+                for (int l = 0; l < 9; l++) {
+                    int s = b[c][l];
+                    if(b[c][l] != 0) {
+                        if (c < 3) {
+                            if (l < 3) {
+                                numX[0][0][b[c][l] - 1] = 0;
+                                numX[1][0][b[c][l] - 1] = 0;
+                                numX[2][0][b[c][l] - 1] = 0;
+                                numX[0][1][b[c][l] - 1] = 0;
+                                numX[1][1][b[c][l] - 1] = 0;
+                                numX[2][1][b[c][l] - 1] = 0;
+                                numX[0][2][b[c][l] - 1] = 0;
+                                numX[1][2][b[c][l] - 1] = 0;
+                                numX[2][2][b[c][l] - 1] = 0;
+                                numX[c][l][b[c][l] - 1] = s;
+                            }
+                            if(l > 2 && l < 6) {
+                                numX[0][3][b[c][l] - 1] = 0;
+                                numX[1][3][b[c][l] - 1] = 0;
+                                numX[2][3][b[c][l] - 1] = 0;
+                                numX[0][4][b[c][l] - 1] = 0;
+                                numX[1][4][b[c][l] - 1] = 0;
+                                numX[2][4][b[c][l] - 1] = 0;
+                                numX[0][5][b[c][l] - 1] = 0;
+                                numX[1][5][b[c][l] - 1] = 0;
+                                numX[2][5][b[c][l] - 1] = 0;
+                                numX[c][l][b[c][l] - 1] = s;
+                            }
+                            if(l > 5) {
+                                numX[0][6][b[c][l] - 1] = 0;
+                                numX[1][6][b[c][l] - 1] = 0;
+                                numX[2][6][b[c][l] - 1] = 0;
+                                numX[0][7][b[c][l] - 1] = 0;
+                                numX[1][7][b[c][l] - 1] = 0;
+                                numX[2][7][b[c][l] - 1] = 0;
+                                numX[0][8][b[c][l] - 1] = 0;
+                                numX[1][8][b[c][l] - 1] = 0;
+                                numX[2][8][b[c][l] - 1] = 0;
+                                numX[c][l][b[c][l] - 1] = s;
+                            }
+                        }
+                        if(c > 2 && c < 6) {
+                            if (l < 3) {
+                                numX[3][0][b[c][l] - 1] = 0;
+                                numX[4][0][b[c][l] - 1] = 0;
+                                numX[5][0][b[c][l] - 1] = 0;
+                                numX[3][1][b[c][l] - 1] = 0;
+                                numX[4][1][b[c][l] - 1] = 0;
+                                numX[5][1][b[c][l] - 1] = 0;
+                                numX[3][2][b[c][l] - 1] = 0;
+                                numX[4][2][b[c][l] - 1] = 0;
+                                numX[5][2][b[c][l] - 1] = 0;
+                                numX[c][l][b[c][l] - 1] = s;
+                            }
+                            if(l > 2 && l < 6) {
+                                numX[3][3][b[c][l] - 1] = 0;
+                                numX[4][3][b[c][l] - 1] = 0;
+                                numX[5][3][b[c][l] - 1] = 0;
+                                numX[3][4][b[c][l] - 1] = 0;
+                                numX[4][4][b[c][l] - 1] = 0;
+                                numX[5][4][b[c][l] - 1] = 0;
+                                numX[3][5][b[c][l] - 1] = 0;
+                                numX[4][5][b[c][l] - 1] = 0;
+                                numX[5][5][b[c][l] - 1] = 0;
+                                numX[c][l][b[c][l] - 1] = s;
+                            }
+                            if(l > 5) {
+                                numX[3][6][b[c][l] - 1] = 0;
+                                numX[4][6][b[c][l] - 1] = 0;
+                                numX[5][6][b[c][l] - 1] = 0;
+                                numX[3][7][b[c][l] - 1] = 0;
+                                numX[4][7][b[c][l] - 1] = 0;
+                                numX[5][7][b[c][l] - 1] = 0;
+                                numX[3][8][b[c][l] - 1] = 0;
+                                numX[4][8][b[c][l] - 1] = 0;
+                                numX[5][8][b[c][l] - 1] = 0;
+                                numX[c][l][b[c][l] - 1] = s;
+                            }
+                        }
+                        if(c > 5) {
+                            if (l < 3) {
+                                numX[6][0][b[c][l] - 1] = 0;
+                                numX[7][0][b[c][l] - 1] = 0;
+                                numX[8][0][b[c][l] - 1] = 0;
+                                numX[6][1][b[c][l] - 1] = 0;
+                                numX[7][1][b[c][l] - 1] = 0;
+                                numX[8][1][b[c][l] - 1] = 0;
+                                numX[6][2][b[c][l] - 1] = 0;
+                                numX[7][2][b[c][l] - 1] = 0;
+                                numX[8][2][b[c][l] - 1] = 0;
+                                numX[c][l][b[c][l] - 1] = s;
+                            }
+                            if(l > 2 && l < 6) {
+                                numX[6][3][b[c][l] - 1] = 0;
+                                numX[7][3][b[c][l] - 1] = 0;
+                                numX[8][3][b[c][l] - 1] = 0;
+                                numX[6][4][b[c][l] - 1] = 0;
+                                numX[7][4][b[c][l] - 1] = 0;
+                                numX[8][4][b[c][l] - 1] = 0;
+                                numX[6][5][b[c][l] - 1] = 0;
+                                numX[7][5][b[c][l] - 1] = 0;
+                                numX[8][5][b[c][l] - 1] = 0;
+                                numX[c][l][b[c][l] - 1] = s;
+                            }
+                            if(l > 5) {
+                                numX[6][6][b[c][l] - 1] = 0;
+                                numX[7][6][b[c][l] - 1] = 0;
+                                numX[8][6][b[c][l] - 1] = 0;
+                                numX[6][7][b[c][l] - 1] = 0;
+                                numX[7][7][b[c][l] - 1] = 0;
+                                numX[8][7][b[c][l] - 1] = 0;
+                                numX[6][8][b[c][l] - 1] = 0;
+                                numX[7][8][b[c][l] - 1] = 0;
+                                numX[8][8][b[c][l] - 1] = 0;
+                                numX[c][l][b[c][l] - 1] = s;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            // gdy jest tylko 1 możliwość wstawia ją
+            for (int c = 0; c < 9; c++) {
+                for (int l = 0; l < 9; l++) {
+                    if (b[c][l] == 0) {
+                        if (Arrays.stream(numX[c][l]).filter(e -> e != 0).count() == 1) {
+                            b[c][l] = Arrays.stream(numX[c][l]).sum();
+                        }
+                    }
+                }
+            }
 
             // poprawka dla sumy
             for (int i = 0; i < 9; i++) {
                 sum += Arrays.stream(b[i]).sum();
-
             }
             if (sum != 405) System.out.println(sum);
             sum = 0;
@@ -358,6 +358,7 @@ public class SudokuApplication {
                     "|  " + c0[8] + "  |  " + c1[8] + "  |  " + c2[8] + "  | |  " + c3[8] + "  |  " + c4[8] + "  |  " + c5[8] + "  | |  " + c6[8] + "  |  " + c7[8] + "  |  " + c8[8] + "  |\n " +
                     "|_____|_____|_____| |_____|_____|_____| |_____|_____|_____| ";
 
+            System.out.println(bracket);
         }
         return " ";
     }
